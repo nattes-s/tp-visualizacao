@@ -1,0 +1,334 @@
+.header__left-side {
+  margin-left: auto;
+  align-self: flex-end;
+}
+
+.header__left-side__menu {
+  display: inline-flex;
+  list-style: none;
+  height: 40px;
+  align-items: flex-end;
+}
+
+.header__left-side__menu__item {
+  cursor: pointer;
+  margin: 0 0.25em;
+  padding: .5em .5em;
+  position: relative;
+}
+
+.header__left-side__menu__item a {
+  color: var(--white);
+  text-decoration: none;
+  text-transform: uppercase;
+}
+
+.header__left-side__menu__item--active {
+  background-color: var(--light-cornflower-blue-2);
+}
+
+.header__left-side__menu__item--active a {
+  color: var(--primary);
+}
+
+.header__left-side__menu__item--active::before {
+  display: block;
+  height: 1em;
+  width: 100%;
+  position: absolute;
+  background-color: var(--light-cornflower-blue-2);
+  content: '';
+  right: 0px;
+  top: 36px; 
+}
+
+.header__top {
+  display: flex;
+  flex-direction: row;
+  background-color: var(--primary);
+  color: var(--white);
+  padding: 1em;
+  line-height: 1.25rem;
+}
+
+.header__submenu {
+  display: flex;
+  flex-direction: row;
+  background-color: var(--light-cornflower-blue-2);
+  justify-content: flex-end;
+}
+
+.header__submenu__list {
+  display: inline-flex;
+  list-style: none;
+  height: 40px;
+  align-items: flex-end;
+}
+
+.header__submenu__list__item {
+  cursor: pointer;
+  margin: 0 0.25em;
+  padding: .5em .5em;
+  color: var(--white);
+  position: relative;
+}
+
+.header__submenu__list__item--active {
+  color: var(--primary);
+}
+
+.header__submenu__list__item--active::before {
+  display: block;
+  height: 0.25em;
+  width: 100%;
+  position: absolute;
+  background-color: var(--primary);
+  content: '';
+  right: 0px;
+  top: 30px;
+}
+
+.header__submenu__list__item a {
+  color: var(--white);
+  text-decoration: none;
+}
+
+.header__submenu__list__item--active a {
+  color: var(--primary);
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+  color: var(--gray);
+}
+
+.card p {
+  text-align: justify;
+}
+
+.card__header {
+  display: flex;
+  min-height: 30px;
+  padding: 1em;
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.card__body {
+  display: flex;
+  padding: 0.5em;
+  overflow: hidden;
+}
+
+.card__body--center {
+  align-items: center;
+  justify-content: center;
+}
+
+.card__body--end {
+  justify-content: flex-end;
+}
+
+
+.card__body--no-overflow {
+  overflow: visible;
+}
+
+.icon {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  background-repeat: no-repeat;
+  vertical-align: top;
+  text-decoration: none;
+  padding: 5px;
+  background-color: #FFF;
+  position: relative;
+}
+
+.icon-with-label {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  background-repeat: no-repeat;
+  vertical-align: top;
+  text-decoration: none;
+  color: var(--gray);
+  font-family: var(--font-family-theme);
+  font-size: 16px;
+  transition: all 0.4s ease;
+  -webkit-transition: all .4s ease;
+  padding: 5px;
+  background-color: #FFF;
+  position: relative;
+}
+
+.icon-with-label:before {
+  content: attr(data-title);
+  background-color: #000;
+  color: #FFF;
+  font-size: 13px;
+  padding: 10px;
+  box-sizing: border-box;
+  font-family: var(--font-family-theme);
+  font-weight: 400;
+  position: absolute;
+  top: 32px;
+  left: 5px;
+  width: 150px;
+  opacity: 0;
+  transition: all .4s ease;
+  white-space: pre-wrap;
+}
+
+.icon-with-label:after {
+  content: "";
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  left: 5px;
+  bottom: -16px;
+  border-style: solid;
+  border-width: 0 10px 10px 10px;
+  border-color: transparent transparent #000 transparent;
+  transition: all .4s ease;
+}
+
+.icon-with-label:hover:after,
+.icon-with-label:hover:before {
+  opacity: 1;
+  z-index: 999;
+}
+
+.icon-information {
+  background-image: var(--icon-information);
+  opacity: 0.5;
+}
+
+.icon-information-label {
+  background-image: var(--icon-information-label);
+
+}
+
+.icon-information-label-white {
+  background-image: var(--icon-information-label-white);
+
+}
+
+.stats {
+  display: flex;
+  flex-direction: row;
+  font-family: var(--font-family-theme);
+  width: 100%;
+  justify-content: center;
+  margin: 1em;
+}
+
+.stats__stat {
+  display: flex;
+  flex-direction: row;
+  max-height: 150px;
+  width: 300px;
+  border-radius: 1em;
+  padding: 0.5em 1.5em;
+  align-items: center;
+  margin: 0 1em;
+  color: var(--dark-grey);
+  position: relative;
+}
+
+.stats__stat.stats__stat--light-cornflower-blue {
+  background-color: var(--light-cornflower-blue);
+}
+
+.stats__stat.stats__stat--light-blue {
+  background-color: var(--light-blue);
+}
+
+.stats__stat.stats__stat--light-purple-3 {
+  background-color: var(--light-purple-3);
+}
+
+.stats__stat.stats__stat--light-magenta-3 {
+  background-color: var(--light-magenta-3);
+}
+
+.stats__stat__title {
+  color: var(--dark-grey);
+  font-size: 1.25rem;
+  width: 63%;
+}
+
+.stats__stat__value {  
+  display: flex;
+  flex-direction: column;
+  width: 37%;
+}
+
+.stats__stat__value__numeric {
+  font-weight: 700;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.stats__stat.stats__stat--light-cornflower-blue
+.stats__stat__value__numeric {
+  color: var(--dark-cornflower-blue);
+}
+
+.stats__stat.stats__stat--light-purple-3
+.stats__stat__value__numeric {
+  color: var(--dark-purple-3);
+}
+
+.stats__stat.stats__stat--light-magenta-3
+.stats__stat__value__numeric {
+  color: var(--dark-magenta-2);
+}
+
+.stats__stat.stats__stat--light-blue
+.stats__stat__value__numeric, .stats__stat__value__description {
+  color: var(--dark-blue-2);
+}
+
+.stats__stat__value__text {
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.stats__stat__value__text.stats__stat__value__text--center {
+  text-align: center;
+}
+
+.stats__stat__value__text.stats__stat__value__text--dark-blue-2 {
+  color: var(--dark-blue-2);
+}
+
+.stats__stat__value__description {
+  font-size: 11px;
+  text-align: center;
+}
+
+.panel-column {
+  display: flex;
+  flex-direction: row;
+}
+
+.panel-column.centralized {
+  justify-content: center;
+}
+
+.panel-column.left {
+  justify-content: left;
+}
+
+.panel-row {
+  display: flex;
+  flex-direction: column;
+}

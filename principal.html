@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trabalho de Visualização</title>
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="styles/settings.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/generic.css">
+    <link rel="stylesheet" href="styles/objects.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="vis04.css">
+</head>
+
+<body>
+    <header>
+        <div class="header__top">
+            <div class="header__logo">
+                <h3 class="header__title">Dashboard de Visualizações</h3>
+                <p class="header__title">Perfil de egressos do curso de Engenharia de Computação da UEMG </p>
+                <p class="header__authors">Edwaldo e Natália </p>
+            </div>
+
+            <div class="header__left-side">
+                <ul class="header__left-side__menu">
+                    <li class="header__left-side__menu__item header__left-side__menu__item--active">
+                        <a href="principal.html"><img src="imagens/paginaPrincipal.avif" width="80" height="80"
+                                style="mouse-cursor: pointer;" alt="Página Principal"" ></a>
+                    </li>                   
+                </ul>
+            </div>
+            </div>      
+    </header>
+    <main>
+        <div class=" container">
+                            <section class="stats">
+                                <div class="stats__stat stats__stat--light-blue">
+                                    <div class="stats__stat__title">Fonte de dados</div>
+                                    <div class="stats__stat__value">
+                                        <span
+                                            class="stats__stat__value__text stats__stat__value__text--dark-blue-2 stats__stat__value__text--center"
+                                            style="witdh: 100%"">LinkedIn e Glassdoor</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class=" card">
+                                            <div class="card__header">
+                                                <h2>Dashboard</h2>
+                                            </div>
+                                            <div class="card__body card__body--no-overflow ">
+                            </section>
+
+
+                            <section class="card">
+                                <div class="home__body__overview-and-wordcloud">
+                                    <div class="home__body__overview-and-wordcloud__overview" style="margin-left: 150px;>
+                        <h2 style=" text-align: center;">Média </h2>
+                                        <br>
+                                        <a href="chart1.html"><img src="imagens/madiaSalarial.png" width="200"
+                                                height="200"></a>
+                                    </div>
+                                    <div class="home__body__overview-and-wordcloud__overview"
+                                        style="margin-left: 50px;">
+                                        <h2 style="text-align: center;">Nuvem</h2>
+                                        <br>
+                                        <a href="chart2.html"> <img src="imagens/nuvemPalavras.png" width="200"
+                                                height="200"> </a>
+                                        <div id="my_dataviz" class="home__body__overview-and-wordcloud__wordcloud">
+                                        </div>
+                                    </div>
+                                    <div class="home__body__overview-and-wordcloud__overview"
+                                        style="margin-left: 50px;">
+                                        <h2 style="text-align: center;">Mapa</h2>
+                                        <br>
+                                        <a href="chart3.html"><img src="imagens/mapaComFiltro.png" width="200"
+                                                height="200"></a>
+                                        <div id="my_dataviz" class="home__body__overview-and-wordcloud__wordcloud">
+                                        </div>
+                                    </div>
+                                    <div class="home__body__overview-and-wordcloud__overview"
+                                        style="margin-left: 50px;">
+                                        <h2 style="text-align: center;">Barras</h2>
+                                        <br>
+                                        <a href="chart4.html"><img src="imagens/barraEmpilhada.png" width="200"
+                                                height="200"></a>
+                                        <div id="my_dataviz" class="home__body__overview-and-wordcloud__wordcloud">
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="card">
+                                <div class="home__body__overview-and-wordcloud" style="align-items: center;">
+                                    <div class="home__body__overview-and-wordcloud__overview" style="margin-left: 250px;>
+                        <h2 style=" text-align: center;">Dispersão </h2>
+                                        <br>
+                                        <a href="chart5.html"><img src="imagens/dispersao.png" width="200"
+                                                height="200"></a>
+                                    </div>
+                                    <div class="home__body__overview-and-wordcloud__overview"
+                                        style="margin-left: 50px;">
+                                        <h2 style="text-align: center;">Divergencia</h2>
+                                        <br>
+                                        <a href="chart6.html"><img src="imagens/divergencia.png" width="200"
+                                                height="200"></a>
+                                        <div id="my_dataviz" class="home__body__overview-and-wordcloud__wordcloud">
+                                        </div>
+                                    </div>
+                                    <div class="home__body__overview-and-wordcloud__overview"
+                                        style="margin-left: 50px;">
+                                        <h2 style="text-align: center;">boxplot</h2>
+                                        <br>
+                                        <a href="chart7.html"><img src="imagens/boxplot.png" width="200"
+                                                height="200"></a>
+                                        <div id="my_dataviz" class="home__body__overview-and-wordcloud__wordcloud">
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+            </div>
+            </main>
+            <footer>
+                <p>&copy; 2024 Visualizações de Dados. Todos os direitos reservados.</p>
+            </footer>
+
+</body>
+
+</html>

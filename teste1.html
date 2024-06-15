@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto de Visualização de Dados</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="styles/settings.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/generic.css">
+    <link rel="stylesheet" href="styles/objects.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="vis04.css">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.min.js"></script>
+    <script src="https://d3js.org/topojson.v3.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Projeto de Visualização de Dados</h1>
+            <p>Autores: Edwaldo e Natália</p>
+        </div>
+        <nav>
+            <ul class="menu">
+                <li><a href="teste1.html">Dashboard</a></li>
+                <li><a href="chart1.html">Médias dos Salários</a></li>
+                <li><a href="chart2.html">Nuvem de Cargos</a></li>
+                <li><a href="chart3.html">Mapa com Filtros</a></li>
+                <li><a href="chart4.html">Barras Empilhadas</a></li>
+                <li><a href="chart5.html">Dispersão dos Dados</a></li>
+                <li><a href="chart6.html">Divergência Salarial</a></li>
+                <li><a href="chart7.html">Boxplot</a></li>
+                <li><a href="chart8.html">Barras Horizontais</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="dashboard">
+            <div class="chart-preview" id="chart1-preview">
+                <h3>Médias dos Salários</h3>
+                <a href="chart1.html">
+                    <img src="imagens/img.jpg" alt="Expandir" class="expand-icon">
+                </a>
+                <div class="mini-chart">
+                    <svg width="300" height="200"></svg>
+                </div>
+                <div id="tooltip-chart1" class="tooltip"></div>
+            </div>
+
+            <div class="chart-preview" id="chart2-preview">
+                <h3>Nuvem de Palavras</h3>
+                <div class="mini-chart">
+                    <svg width="300" height="200"></svg>
+                </div>
+                <div id="tooltip" class="tooltip"></div>
+            </div>
+
+            <div class="chart-preview" id="chart3-preview">
+                <h3 id="chart-title"></h3>
+                <label for="stateFilter">Opções:</label>
+                <select id="filter">
+                    <option value="Media_Salarial">Média Salarial</option>
+                    <option value="Media_Amostras_Salario_Cargo">Média das amostras do salário por cargo</option>
+                    <option value="Diferenca_Relacao_Brasil_Porc">Diferença em relação ao Brasil (%)</option>
+                </select>
+                <svg width="10" height="10" ></svg>
+                <div id="tooltip-chart3" class="tooltip"></div>
+                <div class="card__body__countries__map" ></div>
+            </div>
+
+            <div class="chart-preview" id="chart4-preview">
+                <h3>Nível de confiança dos dados salariais do Glassdor</h3>
+                <button id="filter-all">Mostrar Todos</button>
+                <button id="filter-no-na">Sem "Não Encontrado"</button>
+                <div class="mini-chart">
+                    <svg width="300" height="200"></svg>
+                </div>
+                <div id="tooltip-chart4" class="tooltip"></div>
+            </div>
+
+            <div class="chart-preview" id="chart5-preview">
+                <h3>Dispersão Salarial</h3>
+                <div class="mini-chart">
+                    <svg width="300" height="200"></svg>
+                </div>
+                <div id="tooltip-chart5" class="tooltip"></div>
+            </div>
+
+            <div class="chart-preview" id="chart6-preview">
+                <h3>Diferença salarial em relação ao Brasil</h3>
+                <div class="mini-chart">
+                    <svg width="300" height="200"></svg>
+                </div>
+                <div id="tooltip-chart6" class="tooltip"></div>
+            </div>
+
+
+            <div class="chart-preview" id="chart7-preview">
+                <h3>Boxplot de Salários por Estado</h3>
+                <div class="mini-chart">
+                    <svg width="300" height="200"></svg>
+                </div>
+                <div id="tooltip-chart7" class="tooltip"></div>
+            </div>
+
+            <div class="chart-preview" id="chart8-preview">
+                <h3>Gráfico de Barras Horizontais - Salários Médios por Cargo</h3>
+                <!--<label for="stateFilter">Selecione o Estado:</label>
+                <select id="stateFilter">
+                    <option value="Brasil">Brasil</option>
+                    <option value="SP">São Paulo</option>
+                    <option value="RJ">Rio de Janeiro</option>
+                    <option value="MG">Minas Gerais</option>
+                    <option value="PR">Paraná</option>
+                    <option value="RS">Rio Grande do Sul</option>
+                    <option value="SC">Santa Catarina</option>
+                    <option value="ES">Espírito Santo</option>
+                </select>-->
+                <div class="mini-chart">
+                    <svg width="300" height="200"></svg>
+                </div>
+                <div id="tooltip-chart8" class="tooltip"></div>
+            </div>
+
+        </div>
+    </main>
+
+</body>
+<script src="assets/dashboard.js"></script>
+<footer>
+    <p>&copy; 2024 Projeto de Visualização de Dados. Todos os direitos reservados.</p>
+</footer>
+
+</html>

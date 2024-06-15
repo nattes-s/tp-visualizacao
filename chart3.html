@@ -1,0 +1,294 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa com Filtros</title>
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="styles/settings.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/generic.css">
+    <link rel="stylesheet" href="styles/objects.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="vis04.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://d3js.org/topojson.v3.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="header__top">
+            <div class="header__logo">
+                <h3 class="header__title">Dashboard de Visualizações</h3>
+                <p class="header__title">Perfil de egressos do curso de Engenharia de Computação da UEMG </p>
+                <p class="header__authors">Edwaldo e Natália </p>
+            </div>
+
+            <div class="header__left-side">
+                <ul class="header__left-side__menu">
+                    <li class="header__left-side__menu__item header__left-side__menu__item--active">
+                        <a href="index.html"><img src="imagens/paginaPrincipal.avif" width="50" height="50"
+                                style="mouse-cursor: pointer;" alt="Página Principal"" ></a>
+                    </li>                   
+                </ul>
+            </div>
+            </div>
+        <div class=" header__submenu">
+                            <ul class="header__submenu__list">
+                                <li class="header__submenu__list__item header__submenu__list__item--active">
+                                    <a href="chart1.html">Médias dos Salários</a>
+                                </li>
+                                <li class="header__submenu__list__item header__submenu__list__item--active">
+                                    <a href="chart2.html">Nuvem de Palavras</a>
+                                </li>
+                                <li class="header__submenu__list__item header__submenu__list__item--active">
+                                    <a href="chart3.html">Mapa com Filtros</a>
+                                </li>
+                                <li class="header__submenu__list__item header__submenu__list__item--active">
+                                    <a href="chart4.html">Barras Empilhadas</a>
+                                </li>
+                                <li class="header__submenu__list__item header__submenu__list__item--active">
+                                    <a href="chart5.html">Gráfico de Dispersão</a>
+                                </li>
+                                <li class="header__submenu__list__item header__submenu__list__item--active">
+                                    <a href="chart6.html">Divergência Salarial</a>
+                                </li>
+                                <li class="header__submenu__list__item header__submenu__list__item--active">
+                                    <a href="chart7.html">Boxplot</a>
+                                </li>
+                            </ul>
+            </div>
+
+    </header>
+    <main>
+        <section class="card">
+            <div class="card__header">
+                <h2>Média dos salários por estado </h2>
+            </div>
+            <div class="card__header">
+                <label for="filter">Escolha um filtro:</label>
+                <select id="filter">
+                    <option value="media_salarial">Média Salarial</option>
+                    <option value="media_amostras">Média de Amostras</option>
+                    <option value="diferenca_brasil">Diferença em Relação ao Brasil</option>
+                </select>
+            </div>
+            <div class="card__body">
+                <div class="card__body__countries">
+                    <div class="card__body__countries__group">
+                        <div class="card__body__countries__legends">
+                            <div class="card__body__countries__legends__legend">
+                                <div class="card__body__countries__legends__legend__sign">
+                                    <span class="card__body__countries__legends__legend__sign--light-purple"></span>
+                                </div>
+                                <div class="card__body__countries__legends__legend__description">
+                                    LEGENDA
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card__body__countries__map"></div>
+
+                    </div>
+                    
+                  <div id="tooltip" class="tooltip"></div> 
+                </div>
+            </div>
+            <div id="map">
+                <svg width="960" height="600" style="align-content: center;"></svg>
+            </div>
+        </section>
+    </main>
+   
+    <script src="assets/chart3.js"></script>
+    <footer>
+        <p>&copy; 2024 Visualizações de Dados. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+
+</html>
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projeto de Visualização de Dados</title>
+  <link rel="stylesheet" href="assets/style.css">
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Projeto de Visualização de Dados</h1>
+      <p>Autores: Edwaldo e Natália</p>
+    </div>
+    <nav>
+      <ul class="menu">
+        <li><a href="chart1.html">Médias dos Salários</a></li>
+        <li><a href="chart2.html">Nuvem de Cargos</a></li>
+        <li><a href="chart3.html">Mapa com Filtros</a></li>
+        <li><a href="chart4.html">Barras Empilhadas</a></li>
+        <li><a href="chart5.html">Dispersão dos Dados</a></li>
+        <li><a href="chart6.html">Divergência Salarial</a></li>
+        <li><a href="chart7.html">Boxplot</a></li>
+        <li><a href="clusterings.html">Clusterings</a></li>
+      </ul>
+    </nav>
+  </header>
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Mapa com Filtros</title>
+        <link rel="stylesheet" href="assets/styles.css">
+        <link rel="stylesheet" href="styles/settings.css">
+        <link rel="stylesheet" href="styles/base.css">
+        <link rel="stylesheet" href="styles/generic.css">
+        <link rel="stylesheet" href="styles/objects.css">
+        <link rel="stylesheet" href="styles/components.css">
+        <link rel="stylesheet" href="vis04.css">
+        <script src="https://d3js.org/d3.v7.min.js"></script>
+        <script src="https://d3js.org/topojson.v3.min.js"></script>
+        <link rel="stylesheet" href="assets/style.css">
+    </head>
+
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Projeto de Visualização de Dados</h1>
+      <p>Autores: Edwaldo e Natália</p>
+    </div>
+    <nav>
+      <ul class="menu">
+        <li><a href="chart1.html">Médias dos Salários</a></li>
+        <li><a href="chart2.html">Nuvem de Cargos</a></li>
+        <li><a href="chart3.html">Mapa com Filtros</a></li>
+        <li><a href="chart4.html">Barras Empilhadas</a></li>
+        <li><a href="chart5.html">Dispersão dos Dados</a></li>
+        <li><a href="chart6.html">Divergência Salarial</a></li>
+        <li><a href="chart7.html">Boxplot</a></li>
+        <li><a href="clusterings.html">Clusterings</a></li>
+      </ul>
+    </nav>
+  </header>
+
+    <main>
+        <section class="card">
+            <div class="card__header">
+                <h2>Média dos salários por estado </h2>
+            </div>
+            <div class="card__header">
+                <label for="filter">Escolha um filtro:</label>
+                <select id="filter">
+                    <option value="media_salarial">Média Salarial</option>
+                    <option value="media_amostras">Média de Amostras</option>
+                    <option value="diferenca_brasil">Diferença em Relação ao Brasil</option>
+                </select>
+            </div>
+            <div class="card__body">
+                <div class="card__body__countries">
+                    <div class="card__body__countries__group">
+                        <div class="card__body__countries__legends">
+                            <div class="card__body__countries__legends__legend">
+                                <div class="card__body__countries__legends__legend__sign">
+                                    <span class="card__body__countries__legends__legend__sign--light-purple"></span>
+                                </div>
+                                <div class="card__body__countries__legends__legend__description">
+                                    LEGENDA
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card__body__countries__map"></div>
+
+                    </div>
+
+                  <div id="tooltip" class="tooltip"></div> 
+                </div>
+            </div>
+            <div id="map">
+                <svg width="960" height="600" style="align-content: center;"></svg>
+            </div>
+        </section>
+    </main>
+
+
+</body>
+  <footer>
+    <p>&copy; 2024 Projeto de Visualização de Dados. Todos os direitos reservados.</p>
+  </footer>
+  <script src="assets/chart3.js"></script>
+</html>
+-->
+
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa com Filtros</title>
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="styles/settings.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/generic.css">
+    <link rel="stylesheet" href="styles/objects.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="vis04.css">
+    <script src="https://d3js.org/d3.v7.min.js"></script>
+    <script src="https://d3js.org/topojson.v3.min.js"></script>
+    <link rel="stylesheet" href="assets/style.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Projeto de Visualização de Dados</h1>
+            <p>Autores: Edwaldo e Natália</p>
+        </div>
+        <nav>
+            <ul class="menu">
+                <li><a href="teste1.html">Dashboard</a></li>
+                <li><a href="chart1.html">Médias dos Salários</a></li>
+                <li><a href="chart2.html">Nuvem de Cargos</a></li>
+                <li><a href="chart3.html">Mapa Salarial </a></li>
+                <li><a href="chart4.html">Nível de confiança </a></li>
+                <li><a href="chart5.html">Dispersão dos Dados</a></li>
+                <li><a href="chart6.html">Divergência Salarial</a></li>
+                <li><a href="chart7.html">Boxplot</a></li>
+                <li><a href="chart8.html">Barras Horizontais</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="chart">
+            <h2 id="chart-title"></h2>
+            <label for="stateFilter">Opções:</label>
+            <select id="filter">
+                <option value="Media_Salarial">Média Salarial</option>
+                <option value="Media_Amostras_Salario_Cargo">Média das amostras do salário por cargo</option>
+                <option value="Diferenca_Relacao_Brasil_Porc">Diferença em relação ao Brasil (%)</option>
+            </select>
+        </div>
+        <div class="card__body__countries__map"></div>
+        <div id="tooltip" class="tooltip"></div>
+    </main>
+
+
+</body>
+<footer>
+    <p>&copy; 2024 Projeto de Visualização de Dados. Todos os direitos reservados.</p>
+</footer>
+<script src="assets/chart3.js"></script>
+
+</html>

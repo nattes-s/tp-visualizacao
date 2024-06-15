@@ -1,0 +1,116 @@
+<!--
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto de Visualização de Dados - Gráfico de Barras</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Projeto de Visualização de Dados</h1>
+            <p>Autores: Edwaldo e Natália</p>
+        </div>
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html">Página Principal</a></li>
+                <li><a href="chart1.html">Médias dos Salários</a></li>
+                <li><a href="chart2.html">Nuvem de Cargos</a></li>
+                <li><a href="chart3.html">Mapa com Filtros</a></li>
+                <li><a href="chart4.html">Barras Empilhadas</a></li>
+                <li><a href="chart5.html">Dispersão dos Dados</a></li>
+                <li><a href="chart6.html">Divergência Salarial</a></li>
+                <li><a href="chart7.html">Boxplot</a></li>
+                <li><a href="chart8.html">Gráfico de Barras</a></li>
+                <li><a href="clusterings.html">Clusterings</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="chart" id="chart8">
+            <h2>Salário Médio por Estado</h2>
+            <label for="cargo-select">Selecione um cargo:</label>
+            <select id="cargo-select"></select>
+            <svg width="960" height="500"></svg>
+        </div>
+        <div id="tooltip" class="tooltip"></div>
+    </main>
+
+</body>
+<footer>
+    <p>&copy; 2024 Projeto de Visualização de Dados. Todos os direitos reservados.</p>
+</footer>
+<script src="assets/chart8.js"></script>
+
+</html>
+-->
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto de Visualização de Dados</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Projeto de Visualização de Dados</h1>
+            <p>Autores: Edwaldo e Natália</p>
+        </div>
+        <nav>
+            <ul class="menu">
+                <li><a href="teste1.html">Dashboard</a></li>
+                <li><a href="chart1.html">Médias dos Salários</a></li>
+                <li><a href="chart2.html">Nuvem de Cargos</a></li>
+                <li><a href="chart3.html">Mapa com Filtros</a></li>
+                <li><a href="chart4.html">Barras Empilhadas</a></li>
+                <li><a href="chart5.html">Dispersão dos Dados</a></li>
+                <li><a href="chart6.html">Divergência Salarial</a></li>
+                <li><a href="chart7.html">Boxplot</a></li>
+                <li><a href="chart8.html">Barras Horizontais</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+         <div class="chart">  </div>
+        <div class="chart" id="chart8">
+            <h2>Gráfico de Barras Horizontais - Salários Médios por Cargo</h2>
+            <label for="stateFilter">Selecione o Estado:</label>
+            <select id="stateFilter">
+                <option value="Brasil">Brasil</option>
+                <option value="SP">São Paulo</option>
+                <option value="RJ">Rio de Janeiro</option>
+                <option value="MG">Minas Gerais</option>
+                <option value="PR">Paraná</option>
+                <option value="RS">Rio Grande do Sul</option>
+                <option value="SC">Santa Catarina</option>
+                <option value="ES">Espírito Santo</option>
+            </select>
+           
+        </div>
+        <div class="chart" id="chart8">
+             <svg width="960" height="500"></svg>
+        </div>
+        </div>
+        <div id="tooltip" class="tooltip"></div>
+    </main>
+
+</body>
+<footer>
+    <p>&copy; 2024 Projeto de Visualização de Dados. Todos os direitos reservados.</p>
+</footer>
+<script src="assets/chart8.js"></script>
+
+</html>

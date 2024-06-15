@@ -1,0 +1,389 @@
+<!--
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Coroplético do Brasil</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/topojson.v3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.min.js"></script>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .filters {
+            margin-bottom: 20px;
+        }
+        .tooltip {
+            position: absolute;
+            text-align: center;
+            width: 120px;
+            height: 28px;
+            padding: 2px;
+            font: 12px sans-serif;
+            background: lightsteelblue;
+            border: 0px;
+            border-radius: 8px;
+            pointer-events: none;
+        }
+        .bar {
+            stroke: #000;
+        }
+        .axis text {
+            font-size: 12px;
+        }
+        .legend {
+            font-size: 12px;
+            text-anchor: end;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="chart" id="chart1">
+            <h1>Médias dos Salários</h1>
+            <svg width="960" height="500"></svg>
+        </div>
+        <div class="chart" id="chart2">
+            <h1>Nuvem de palavras</h1>
+            <svg width="960" height="500"></svg>
+        </div>
+
+        <div class="chart" id="chart4">
+            <h1>Barras empilhadas</h1>
+            <svg width="960" height="500"></svg>
+        </div>
+        <div id="map">
+            <div class="filters">
+                <h1>Mapa com filtros</h1>
+                <label for="filter">Escolha um filtro:</label>
+                <select id="filter">
+                    <option value="media_salarial">Média Salarial</option>
+                    <option value="media_amostras">Média de Amostras</option>
+                    <option value="diferenca_brasil">Diferença em Relação ao Brasil</option>
+                </select>
+            </div>
+        </div>
+        <div id="tooltip" class="tooltip" style="opacity:0;" ></div>
+
+    </div>
+    <div id="tooltip" style="opacity: 0;"></div>
+    <script src="assets/chart1.js"></script>
+    <script src="assets/chart2.js"></script>
+    <script src="assets/chart3.js"></script>
+    <script src="assets/chart4.js"></script>
+</body>
+</html>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Coroplético do Brasil</title>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://d3js.org/topojson.v3.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-cloud/1.2.5/d3.layout.cloud.min.js"></script>
+    <style>
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .filters {
+            margin-bottom: 20px;
+        }
+        .tooltip {
+            position: absolute;
+            text-align: center;
+            width: 120px;
+            height: 28px;
+            padding: 2px;
+            font: 12px sans-serif;
+            background: lightsteelblue;
+            border: 0px;
+            border-radius: 8px;
+            pointer-events: none;
+        }
+        .bar {
+            stroke: #000;
+        }
+        .axis text {
+            font-size: 12px;
+        }
+        .legend {
+            font-size: 12px;
+            text-anchor: end;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="chart" id="chart1">
+            <h1>Médias dos Salários</h1>
+            <svg width="960" height="500"></svg>
+        </div>
+        <div class="chart" id="chart2">
+            <h1>Nuvem de palavras</h1>
+            <svg width="960" height="500"></svg>
+        </div>
+        <div class="chart" id="chart4">
+            <h1>Barras empilhadas</h1>
+            <svg width="960" height="500"></svg>
+        </div>
+        <div id="map">
+            <div class="filters">
+                <h1>Mapa com filtros</h1>
+                <label for="filter">Escolha um filtro:</label>
+                <select id="filter">
+                    <option value="media_salarial">Média Salarial</option>
+                    <option value="media_amostras">Média de Amostras</option>
+                    <option value="diferenca_brasil">Diferença em Relação ao Brasil</option>
+                </select>
+            </div>
+            <svg width="960" height="600"></svg>
+        </div>
+        <div id="tooltip" class="tooltip" style="opacity:0;"></div>
+    </div>
+    <script src="assets/chart1.js"></script>
+    <script src="assets/chart2.js"></script>
+    <script src="assets/chart3.js"></script>
+    <script src="assets/chart4.js"></script>
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Coroplético do Brasil</title>
+    <link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Visualizações de Dados</h1>
+        <nav>
+            <ul>
+                <li><a href="chart1.html">Médias dos Salários</a></li>
+                <li><a href="chart2.html">Nuvem de Palavras</a></li>
+                <li><a href="chart3.html">Mapa com Filtros</a></li>
+                <li><a href="chart4.html">Barras Empilhadas</a></li>
+                <li><a href="chart5.html">Gráfico de Dispersão</a></li>
+                <li><a href="chart6.html">Divergência Salarial</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h2>Bem-vindo às Visualizações de Dados</h2>
+        <p>Escolha uma visualização no menu acima.</p>
+    </main>
+    <footer>
+        <p>&copy; 2024 Visualizações de Dados. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard de Visualizações</title>
+    <link rel="stylesheet" href="assets/styles.css">
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>Dashboard de Visualizações</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Dashboard</a></li>
+                <li><a href="chart1.html">Médias dos Salários</a></li>
+                <li><a href="chart2.html">Nuvem de Palavras</a></li>
+                <li><a href="chart3.html">Mapa com Filtros</a></li>
+                <li><a href="chart4.html">Barras Empilhadas</a></li>
+                <li><a href="chart5.html">Gráfico de Dispersão</a></li>
+                <li><a href="chart6.html">Divergência Salarial</a></li>
+                <li><a href="chart7.html">Boxplot</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="dashboard">
+            <div class="chart-preview" id="chart1-preview">
+                <h3>Médias dos Salários</h3>
+                <div class="mini-chart"></div>
+            </div>
+            <div class="chart-preview" id="chart2-preview">
+                <h3>Nuvem de Palavras</h3>
+                <div class="mini-chart"></div>
+            </div>
+            <div class="chart-preview" id="chart3-preview">
+                <h3>Mapa com Filtros</h3>
+                <div class="mini-chart"></div>
+            </div>
+            <div class="chart-preview" id="chart4-preview">
+                <h3>Barras Empilhadas</h3>
+                <div class="mini-chart"></div>
+            </div>
+            <div class="chart-preview" id="chart5-preview">
+                <h3>Scatterplot</h3>
+                <div class="mini-chart"></div>
+            </div>
+            <div class="chart-preview" id="chart6-preview">
+                <h3>Diverging Bar Chart</h3>
+                <div class="mini-chart"></div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>&copy; 2024 Visualizações de Dados. Todos os direitos reservados.</p>
+    </footer>
+    <script src="assets/dashboard.js"></script>
+</body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projeto de Visualização de Dados</title>
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="styles/settings.css">
+    <link rel="stylesheet" href="styles/base.css">
+    <link rel="stylesheet" href="styles/generic.css">
+    <link rel="stylesheet" href="styles/objects.css">
+    <link rel="stylesheet" href="styles/components.css">
+    <link rel="stylesheet" href="vis04.css">
+</head>
+
+<body>
+    <header>
+        <div class="header-content">
+            <h1>Projeto de Visualização de Dados</h1>
+            <p>Autores: Edwaldo e Natália</p>
+        </div>
+        <nav>
+            <ul class="menu">
+                <li><a href="index.html">Página Principal</a></li>
+                <li><a href="chart1.html">Médias dos Salários</a></li>
+                <li><a href="chart2.html">Nuvem de Cargos</a></li>
+                <li><a href="chart3.html">Mapa Salarial </a></li>
+                <li><a href="chart4.html">Nível de confiança </a></li>
+                <li><a href="chart5.html">Dispersão dos Dados</a></li>
+                <li><a href="chart6.html">Divergência Salarial</a></li>
+                <li><a href="chart7.html">Boxplot</a></li>
+                <li><a href="chart8.html">Barras Horizontais</a></li>
+                <li><a href="teste1.html">Teste</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class=" container">
+            <section class="card" >
+                <div class="home__body__overview-and-wordcloud" style="margin-left: 150px;">
+                    <div class="home__body__overview-and-wordcloud__overview" >
+                        <h2 style=" text-align: center;">Média</h2>
+                        <br>
+                        <a href="chart1.html"><img src="imagens/madiaSalarial.png" width="200" height="200"></a>
+                    </div>
+                    <div class="home__body__overview-and-wordcloud__overview" style="margin-left: 50px;">
+                        <h2 style="text-align: center;">Nuvem</h2>
+                        <br>
+                        <a href="chart2.html"> <img src="imagens/nuvemPalavras.png" width="200" height="200"></a>
+                    </div>
+                    <div class="home__body__overview-and-wordcloud__overview" style="margin-left: 50px;">
+                        <h2 style="text-align: center;">Mapa</h2>
+                        <br>
+                        <a href="chart3.html"><img src="imagens/mapaComFiltro.png" width="200" height="200"></a>
+
+                    </div>
+                    <div class="home__body__overview-and-wordcloud__overview" style="margin-left: 50px;">
+                        <h2 style="text-align: center;">Barras</h2>
+                        <br>
+                        <a href="chart4.html"><img src="imagens/barraEmpilhada.png" width="200" height="200"></a>
+                    </div>
+                </div>
+            </section>
+            <section class="card">
+                <div class="home__body__overview-and-wordcloud" style="margin-left: 150px;">
+                    <div class="home__body__overview-and-wordcloud__overview" >
+                        <h2 style="text-align: center;">Dispersão</h2>
+                        <br>
+                        <a href="chart5.html"><img src="imagens/dispersao.png" width="200" height="200"></a>
+                    </div>
+                    <div class="home__body__overview-and-wordcloud__overview" style="margin-left: 50px;">
+                        <h2 style="text-align: center;">Divergencia</h2>
+                        <br>
+                        <a href="chart6.html"><img src="imagens/divergencia.png" width="200" height="200"></a>
+                    </div>
+                    <div class="home__body__overview-and-wordcloud__overview" style="margin-left: 50px;">
+                        <h2 style="text-align: center;">boxplot</h2>
+                        <br>
+                        <a href="chart7.html"><img src="imagens/boxplot.png" width="200" height="200"></a>
+                    </div>
+                    <div class="home__body__overview-and-wordcloud__overview" style="margin-left: 50px;">
+                        <h2 style="text-align: center;">Clusterings</h2>
+                        <br>
+                        <a href="chart7.html"><img src="imagens/boxplot.png" width="200" height="200"></a>
+                    </div>
+                </div>
+        </div>
+        </section>
+        <!-- <section class="dashboard">
+      <div class="vizualizacao" style="margin-left: 150px;>
+           <h2 style="text-align: center;">Média Salárial</h2>
+          <a href="chart1.html"><img src="imagens/madiaSalarial.png" width="200" height="200"></a>
+          <div class="vizualizacao-content">Mini Visualização 1</div>
+        </a>
+      </div>
+      <div class="vizualizacao">
+        <a href="nuvem-de-cargos.html">
+          <div class="vizualizacao-content">Mini Visualização 2</div>
+        </a>
+      </div>
+      <div class="vizualizacao">
+        <a href="mapa-com-filtros.html">
+          <div class="vizualizacao-content">Mini Visualização 3</div>
+        </a>
+      </div>
+      <div class="vizualizacao">
+        <a href="barras-empilhadas.html">
+          <div class="vizualizacao-content">Mini Visualização 4</div>
+        </a>
+      </div>
+      <div class="vizualizacao">
+        <a href="dispersao-dos-dados.html">
+          <div class="vizualizacao-content">Mini Visualização 5</div>
+        </a>
+      </div>
+      <div class="vizualizacao">
+        <a href="divergencia-salarial.html">
+          <div class="vizualizacao-content">Mini Visualização 6</div>
+        </a>
+      </div>
+    </section> -->
+    </main>
+
+
+</body>
+<footer>
+    <p>&copy; 2024 Projeto de Visualização de Dados. Todos os direitos reservados.</p>
+</footer>
+
+</html>

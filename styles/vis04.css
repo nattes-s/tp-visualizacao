@@ -1,0 +1,179 @@
+.bar {
+  fill: #8e7bd7;
+}
+.bar:hover{
+  fill: #6443ea;
+}
+
+.axis path, .axis line {
+  fill: none;
+  stroke: #D4D8DA;
+  stroke-width: 1px;
+  shape-rendering: crispEdges;
+}
+.x path {
+  display: none;
+}
+/*.toolTip {
+  position: absolute;
+  display: none;
+  pointer-events: none;
+  min-width: 80px;
+  height: auto;
+  background: none repeat scroll 0 0 #ffffff;
+  border: 1px solid black;
+  padding: 8px;
+  text-align: center;
+  color: var(--dark-gray);
+  font-size: var(--caption-font-size);
+  font-family: var(--font-family-theme);
+  text-align: left;
+}*/
+
+
+.card__header__vis04{
+  display: flex;
+  min-height: 30px;
+  padding: 1em;
+  font-size: 1.5rem;
+  line-height: 1;
+  text-align: left;
+  overflow: hidden;
+  white-space: nowrap;
+  align-items: center;
+}
+
+.y-axis, .x-axis {
+  fill: none;
+  stroke: none;
+}
+/* Corpo da página */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f8f9fa;
+}
+
+/* Contêiner principal do mapa 
+#map {
+    margin-top: 20px;
+}*/
+
+/* Tooltip 
+.tooltip {
+    position: absolute;
+    text-align: center;
+    width: auto;
+    padding: 10px;
+    font: 12px sans-serif;
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    border: 0;
+    border-radius: 4px;
+    pointer-events: none;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+}*/
+
+/* Seletor de filtro */
+div {
+    margin-top: 20px;
+}
+
+label {
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+select {
+    padding: 5px;
+    font-size: 16px;
+}
+
+/* Estilo para a legenda */
+.legend {
+    font-size: 12px;
+}
+
+.legend rect {
+    stroke: #000;
+    stroke-width: 0.5;
+}
+/* Corpo da página */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #f8f9fa;
+   justify-content: center;
+   height: 100vh;
+}
+
+
+
+/* Contêiner principal do mapa */
+#map {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Tooltip */
+#tooltip {
+    position: absolute;
+    text-align: center;
+    width: auto;
+    padding: 10px;
+    font: 12px sans-serif;
+    background: rgba(0, 0, 0, 0.75);
+    color: #fff;
+    border: 0;
+    border-radius: 4px;
+    pointer-events: none;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.3);
+   opacity: 0;
+}
+
+/* Estilo para a legenda */
+.legend {
+    font-size: 12px;
+}
+
+.legend rect {
+    stroke: #000;
+    stroke-width: 0.5;
+}
+/* Adicionando a classe filter */
+.filter {
+    display: inline-block;
+    margin: 0 10px;
+    font-size: 16px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.filter:hover {
+    background-color: #e0e0e0;
+}
+/* SVG Map Styling */
+svg {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Path Styling */
+path {
+    stroke: #fff;
+    stroke-width: 1.5px;
+}

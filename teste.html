@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mapa Coroplético do Brasil</title>
+    <style>
+        .tooltip {
+            position: absolute;
+            text-align: center;
+            width: 120px;
+            height: auto;
+            padding: 5px;
+            font: 12px sans-serif;
+            background: lightsteelblue;
+            border: 0px;
+            border-radius: 8px;
+            pointer-events: none;
+        }
+        #filter {
+            margin: 20px;
+        }
+        .country {
+            fill: #ccc;
+            stroke: #fff;
+        }
+        .country-hover {
+            fill: orange;
+        }
+    </style>
+</head>
+<body>
+    <div id="map"></div>
+    <select id="filter">
+        <option value="Media_Salarial">Maior Salário</option>
+        <option value="Media_Amostras_Salario_Cargo">Média de Amostras</option>
+        <option value="Diferenca_Relacao_Brasil_Porc">Diferença em Relação ao Brasil</option>
+    </select>
+    <div id="tooltip" class="tooltip"></div>
+
+    <script src="https://d3js.org/d3.v6.min.js"></script>
+    <script src="https://d3js.org/topojson.v3.min.js"></script>
+    <script>
+        const width = 960, height = 600;
+        const svg = d3.select("#map").append("svg").attr("width", width).attr("height", height);
+        const projection = d3.geoMercator().center([-55, -15]).scale(800).translate([width / 2, height / 2]);
+        const path = d3.geoPath().projection(projection);
+
+        const tooltip = d3.select("#tooltip");
+
+        d3.json('data/br-states.json').then(function(brasil) {
+            d3.json('data/mapa.csv').then(function(stateData) {
+                const dataById = {};
+                stateData.forEach(d => { dataById[d.id] = d; });
+
+                const colorScale = d3.scaleSequential(d3.interpolateBlues).domain([0, d3.max(stateData, d => +d.Media_Salarial)]);
+
+                svg.append("g")
+                    .selectAll("path")
+                    .data(topojson.feature(brasil, brasil.objects.estados).features)
+                    .enter().append("path")
+                    .attr("d", path)
+                    .attr("class", "country")
+                    .attr("fill", d => colorScale(dataById[d.id] ? dataById[d.id].Media_Salarial : 0))
+                    .on("mouseover", (event, d) => {
+                        const data = dataById[d.id];
+                        if (data) {
+                            tooltip.html(`Estado: ${data.Estado}<br>Salário: ${data.Media_Salarial}`)
+                                .style("visibility", "visible");
+                        }
+                    })
+                    .on("mousemove", (event) => {
+                        tooltip.style("top", (event.pageY - 10) + "px").style("left", (event.pageX + 10) + "px");
+                    })
+                    .on("mouseout", () => tooltip.style("visibility", "hidden"));
+
+                d3.select("#filter").on("change", function() {
+                    const selected = this.value;
+                    colorScale.domain([0, d3.max(stateData, d => +d[selected])]);
+
+                    svg.selectAll("path")
+                        .attr("fill", d => colorScale(dataById[d.id] ? dataById[d.id][selected] : 0));
+                });
+            });
+        });
+    </script>
+</body>
+</html>
