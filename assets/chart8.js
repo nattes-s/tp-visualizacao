@@ -92,8 +92,35 @@ d3.csv("data/cargos4.csv", function(d) {
 
         y.domain(window.filteredData.map(d => d.cargo));
 
-        xAxis.transition().call(d3.axisBottom(x));
-        yAxis.transition().call(d3.axisLeft(y));
+        xAxis.transition().call(d3.axisBottom(x).tickFormat(d3.format("$.2f")));
+         xAxis.selectAll("text") // Seleciona todos os rótulos de texto do eixo X
+        .style("text-anchor", "end") // Define a âncora de texto para o final
+        .attr("dx", "-.8em") // Ajusta a posição horizontal dos rótulos
+        .attr("dy", ".15em") // Ajusta a posição vertical dos rótulos
+        .attr("transform", "rotate(-45)"); // Rotaciona os rótulos em 45 graus;
+       // xAxis.transition().call(d3.axisBottom(x));
+       // yAxis.transition().call(d3.axisLeft(y));
+        // Aplica a formatação desejada nos rótulos do eixo y
+        yAxis.transition().call(d3.axisLeft(y).tickFormat(d => d.replace(/_/g, ' ')));
+
+        const xAxisLabel = chart.append("text")
+            .attr("class", "x-axis-label")
+            .attr("x", width / 2)
+            .attr("y", height + margin.bottom - 10)
+            .attr("text-anchor", "middle")
+            .attr("font-size", "12px")
+            .attr("fill", "#000")
+            .text("Média Salarial (R$)");
+
+        const yAxisLabel = chart.append("text")
+            .attr("class", "y-axis-label")
+            .attr("x", -height / 2)
+            .attr("y", -margin.left + 50)
+            .attr("transform", "rotate(-90)")
+            .attr("text-anchor", "middle")
+            .attr("font-size", "12px")
+            .attr("fill", "#000")
+            .text("Cargos");
 
         /*
         const bars = chart.selectAll(".bar")
@@ -278,11 +305,18 @@ d3.csv("data/cargos4.csv", function(d) {
             .innerRadius(30)
             .outerRadius(50);
 
-        const colors = {
+        /*const colors = {
             baixa: "#ff0000",
             alta: "#00ff00",
             muitoAlta: "#FFA500",
             naoEncontrado: "#808080"
+        };*/
+
+        const colors = {
+            baixa: "#ff4c4c",
+            alta: "#4caf50",
+            muitoAlta: "#ffca28",
+            naoEncontrado: "#9e9e9e"
         };
 
         const arcs = dataReady.map(d => `

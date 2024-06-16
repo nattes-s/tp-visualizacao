@@ -1463,6 +1463,7 @@ footer {
 }
 */
 
+/*
 * {
   margin: 0;
   padding: 0;
@@ -1576,21 +1577,21 @@ footer {
   opacity: 0;
 }
 .y-axis-label {
-    font-family: Arial, sans-serif; /* Escolha a fonte desejada */
-    font-size: 12px; /* Escolha o tamanho da fonte desejado */
-    fill: #333; /* Cor do texto */
+    font-family: Arial, sans-serif; 
+    font-size: 12px; 
+    fill: #333; 
 }
 .x-axis-label {
-    font-family: Arial, sans-serif; /* Escolha a fonte desejada */
-    font-size: 12px; /* Escolha o tamanho da fonte desejado */
-    fill: #333; /* Cor do texto */
+    font-family: Arial, sans-serif; 
+    font-size: 12px; 
+    fill: #333; 
 }
 
 .median-line {
     stroke-width: 2px;
     stroke: red;
 }
-
+*/
 
 /*#tooltip7 {
   position: absolute;
@@ -1610,3 +1611,182 @@ footer {
 
 
 
+
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  color: #333;
+}
+
+header {
+  background-color: #2c697e;
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+.header-content h1 {
+  margin-bottom: 10px;
+
+}
+
+nav {
+  background-color: #204d57;
+}
+
+.menu {
+  list-style: none;
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.menu li {
+  margin: 0 10px;
+}
+
+.menu a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 15px;
+  display: block;
+}
+
+.menu a:hover {
+  background-color: #1a3a3f;
+  border-radius: 5px;
+}
+
+main {
+  padding: 20px;
+}
+
+h2{
+  margin-bottom: 20px;
+
+}
+.chart {
+  max-width: 100%;
+  overflow: hidden;
+  margin-left: 150px;
+  text-align: center;  
+}
+
+footer {
+  background-color: #2c697e;
+  color: white;
+  text-align: center;
+  padding: 20px;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+
+@media (max-width: 768px) {
+.menu {
+flex-direction: column;
+}
+
+.menu li {
+margin: 5px 0;
+}
+}
+
+.tooltip {
+position: absolute;
+text-align: center;
+width: auto;
+height: auto;
+padding: 10px 10px 10px 10px;
+font: 12px sans-serif;
+background: lightsteelblue;
+border: 0px;
+border-radius: 8px;
+pointer-events: none;
+opacity: 0;
+}
+
+#tooltip1 {
+position: absolute;
+text-align: center;
+width: auto;
+height: auto;
+padding: 8px;
+font: 12px sans-serif;
+background: lightsteelblue;
+border: 0px;
+border-radius: 8px;
+pointer-events: none;
+opacity: 0;
+}
+
+.y-axis-label {
+  font-family: Arial, sans-serif; 
+  font-size: 12px; 
+  fill: #333; 
+}
+.x-axis-label {
+  font-family: Arial, sans-serif; 
+  font-size: 12px; 
+  fill: #333; 
+}
+
+/*.y-axis-label {
+font-family: Arial, sans-serif; /* Escolha a fonte desejada /
+font-size: 12px; / Escolha o tamanho da fonte desejado /
+fill: #333; / Cor do texto /
+}
+.x-axis-label {
+font-family: Arial, sans-serif; / Escolha a fonte desejada /
+font-size: 12px; / Escolha o tamanho da fonte desejado /
+fill: #333; / Cor do texto 
+}*/
+
+.median-line {
+stroke-width: 2px;
+stroke: red;
+}
+
+.dashboard {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /*mudei de 300 para 400*/
+grid-template-rows: 300px; /*adicionei*/
+gap: 1em;
+}
+
+.chart-preview {
+border: 1px solid #ccc;
+border-radius: 5px;
+padding: 1em;
+text-align: center;
+cursor: pointer;
+
+}
+
+.chart-preview h3 {
+margin-top: 0;
+}
+
+.mini-chart {
+  display: flex;
+  width: 100%; 
+  margin-left: 50px;
+
+}
+.expand-icon {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  width: 20px;  /* Largura do ícone menor */
+  height: 20px; /* Altura do ícone menor */
+  cursor: pointer;
+  z-index: 10;
+}

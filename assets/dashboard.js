@@ -7,7 +7,7 @@ function loadMiniCharts() {
         var svg = d3.select("#chart1-preview .mini-chart svg"),
             
             
-            margin = { top: 50, right: 30, bottom: 70, left: 70 },
+            margin = { top: 15, right: 30, bottom: 70, left: 70 },
             width = +svg.attr("width") - margin.left - margin.right,
             height = +svg.attr("height") - margin.top - margin.bottom,
             g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -150,7 +150,7 @@ function loadMiniCharts() {
 
     //INÍCIO DO CHART 3
 
-    var width = 300,
+    var width = 450,
         height = 200;
 
     // Crie a projeção e o path
@@ -726,15 +726,17 @@ function loadMiniCharts() {
         });
 
         console.log("Salaries after filtering NaN values:", salaries);
-        const tooltip = d3.select("#tooltip");
+        const tooltip = d3.select("#tooltip-chart7");
 
         // Set dimensions and margins
-        let margin = { top: 50, right: 30, bottom: 70, left: 70 },
-            width = 960 - margin.left - margin.right,
-            height = 500 - margin.top - margin.bottom;
+        let margin = { top: 40, right: 200, bottom: 70, left: 70 },
+            width = 450 - margin.left - margin.right,
+            height = 200 - margin.top - margin.bottom;
 
+
+      
         // Append SVG
-        let svg = d3.select("#chart7 svg")
+        let svg = d3.select("#chart7-preview .mini-chart svg")
             .attr("width", width + margin.left + margin.right)
             .attr("height", height + margin.top + margin.bottom)
             .append("g")
@@ -916,12 +918,13 @@ function loadMiniCharts() {
                     .style("opacity", 0);
             });
 
+
         // Adicionando rotulos no grafico
         svg.append("text")
             .attr("class", "x-axis-label")
             .attr("text-anchor", "middle")
-            .attr("x", margin.left + width / 2)
-            .attr("y", height + margin.bottom - 5)
+            .attr("x", margin.left )
+            .attr("y", height + margin.bottom - 10)
             .text("Estados");
 
         svg.append("text")
@@ -932,7 +935,407 @@ function loadMiniCharts() {
             .attr("y", -margin.left + 10)
             .text("Média Salarial (R$)");
     });
+
     // FINAL DO CHART 7
+
+    //INICIO DO CHART 8
+    window.selectedState = "Brasil";
+    window.filteredData = null;
+    window.dados = null;
+    d3.csv("data/cargos4.csv", function(d) {
+        for (let key in d) {
+            if (d[key].trim() === "") {
+                d[key] = NaN;
+            } else {
+                d[key + "_original"] = d[key];
+                d[key] = parseFloat(d[key].replace(/\./g, '').replace(',', '.'));
+            }
+        }
+        return d;
+    }).then(data => {
+        const svg = d3.select("#chart8-preview .mini-chart svg"),
+           /* margin = { top: 10, right: 30, bottom: 30, left: 30 },
+             margin = {top: 20, right: 100, bottom: 80, left: 80}
+            width = 350 - margin.left - margin.right,
+            height = 250 - margin.top - margin.bottom;*/
+            margin = { top: 10, right: 150, bottom: 70, left: 70 },
+            width = 450 - margin.left - margin.right,
+            height = 200 - margin.top - margin.bottom;
+
+        
+        const chart = svg.append("g")
+            .attr("transform", `translate(${margin.left},${margin.top})`);
+
+        const x = d3.scaleLinear().range([0, width]);
+        const y = d3.scaleBand().range([height, 0]).padding(0.1);
+
+        const xAxis = chart.append("g")
+            .attr("transform", `translate(0,${height})` );
+        
+        const yAxis = chart.append("g");
+        
+        const yAxisLabelLimit = 5; // Limite de 10 caracteres
+
+        // Use a função de formatação ao configurar o eixo Y
+        yAxis.transition().call(d3.axisLeft(y).tickFormat(d => {
+            // Verifique se o rótulo excede o limite de caracteres
+            if (d.length > yAxisLabelLimit) {
+                // Se exceder, abrevie o rótulo e adicione reticências
+                return d.substring(0, yAxisLabelLimit) + "...";
+            } else {
+                // Caso contrário, mantenha o rótulo original
+                return d;
+            }
+        }));
+        
+        const stateFilter = d3.select("#stateFilter");
+
+        function updateData(selectedState) {
+            //let window.filteredData;
+
+            if (selectedState === "Brasil") {
+                window.filteredData = data.map(d => ({
+                    cargo: d.Cargo_original,
+                    media: d.SalarioBrasil_mean_original,
+                    mediana: d.SalarioBrasil_median_original,
+                    totalRegistros: d.TotalRegistros_original,
+                    amostras: d.AmostrasBrasil_mean_original,
+                    confianca: {
+                        baixa: d.ConfiancaBrasil_Baixa_original,
+                        alta: d.ConfiancaBrasil_Alta_original,
+                        muitoAlta: d.ConfiancaBrasil_MuitoAlta_original,
+                        naoEncontrado: d.ConfiancaBrasil_naoEncontrado_original
+                    }
+
+                }));
+                //console.log(window.filteredData);
+            } else {
+                window.filteredData = data.map(d => ({
+
+                    cargo: d.Cargo_original,
+                    media: d[`Salario${selectedState}_mean_original`],
+                    mediana: d[`Salario${selectedState}_median_original`],
+                    totalRegistros: d.TotalRegistros_original,
+                    //totalRegistros: d[`TotalRegistros${selectedState}`],
+                    amostras: d[`Amostras${selectedState}_mean_original`],
+                    confianca: {
+                        baixa: d[`Confianca${selectedState}_Baixa_original`],
+                        alta: d[`Confianca${selectedState}_Alta_original`],
+                        muitoAlta: d[`Confianca${selectedState}_MuitoAlta_original`],
+                        naoEncontrado: d[`Confianca${selectedState}_NaoEncontrado_original`]
+                    }
+
+
+                }));
+                console.log(window.filteredData);
+            }
+            // window.filteredData.sort((a, b) => a.media - b.media);
+            return window.filteredData.filter(d => !isNaN(d.media));
+        }
+        //para formatar as casas decimais
+        var formatDecimal = d3.format(".2f");
+        //formatando os valores monetarios 
+        const formatBR = new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL',
+            minimumFractionDigits: 2,
+            maximumFractionDigits: 2
+        });
+
+        function updateChart(filteredData, selectedState) {
+
+            window.filteredData.forEach(d => d.selectedState = selectedState);
+            window.filteredData.sort((a, b) => a.media - b.media);
+            //console.log(window.filteredData)
+            const maxMedia = window.filteredData.reduce((max, d) => Math.max(max, d.media), 0)
+            x.domain([0, maxMedia * 1.1]); // Adiciona 10% ao valor máximo para margem
+
+            y.domain(window.filteredData.map(d => d.cargo));
+
+            xAxis.transition().call(d3.axisBottom(x).tickFormat(d3.format("$.2f")));
+            xAxis.selectAll("text") // Seleciona todos os rótulos de texto do eixo X
+            .style("text-anchor", "end") // Define a âncora de texto para o final
+            .attr("dx", "-.8em") // Ajusta a posição horizontal dos rótulos
+            .attr("dy", ".15em") // Ajusta a posição vertical dos rótulos
+            .attr("transform", "rotate(-45)"); // Rotaciona os rótulos em 45 graus;
+           // yAxis.transition().call(d3.axisLeft(y));
+            // Aplica a formatação desejada nos rótulos do eixo y
+            yAxis.transition().call(d3.axisLeft(y).tickFormat(d => d.replace(/_/g, ' ')));
+
+            // Use a função de formatação ao configurar o eixo Y
+            yAxis.transition().call(d3.axisLeft(y).tickFormat(d => {
+                // Verifique se o rótulo excede o limite de caracteres
+                if (d.length > yAxisLabelLimit) {
+                    // Se exceder, abrevie o rótulo e adicione reticências
+                    return d.substring(0, yAxisLabelLimit) + "...";
+                } else {
+                    // Caso contrário, mantenha o rótulo original
+                    return d;
+                }
+            }));
+
+            const xAxisLabel = chart.append("text")
+                .attr("class", "x-axis-label")
+                .attr("x", width / 2)
+                .attr("y", height + margin.bottom - 10)
+                .attr("text-anchor", "middle")
+                .attr("font-size", "12px")
+                .attr("fill", "#000")
+                .text("Média Salarial (R$)");
+
+            const yAxisLabel = chart.append("text")
+                .attr("class", "y-axis-label")
+                .attr("x", -height / 2)
+                .attr("y", -margin.left + 10)
+                .attr("transform", "rotate(-90)")
+                .attr("text-anchor", "middle")
+                .attr("font-size", "12px")
+                .attr("fill", "#000")
+                .text("Cargos");
+
+            /*
+            const bars = chart.selectAll(".bar")
+                .data(window.filteredData, d => d.cargo);
+
+            bars.enter().append("rect")
+                .attr("class", "bar")
+                .attr("x", 0)
+                .attr("y", d => y(d.cargo))
+                .attr("height", y.bandwidth())
+                .attr("fill", "#2c697e")
+                .merge(bars)
+                .attr("width", d => x(d.media))
+                .on("mouseover", function(event, d) {
+                    const tooltip = d3.select("#tooltip");
+                    tooltip.transition()
+                        .duration(200)
+                        .style("opacity", .9);
+                    tooltip.html(
+                        `Cargo: ${window.filteredData[d].cargo}<br>Total de Registros: ${window.filteredData[d].totalRegistros}<br>Estado: ${selectedState}<br>Média Salarial: ${window.filteredData[d].media}<br>Mediana do Salário: ${window.filteredData[d].mediana}<br>Número de Amostras: ${window.filteredData[d].amostras}<br>` +
+                        `<svg width="150" height="150">
+                            <g transform="translate(75,75)">
+                                ${renderPieChart(window.filteredData[d].confianca)}
+                            </g>
+                        </svg>`
+                    )
+                    .style("left", (d3.event.pageX) + "px")
+                    .style("top", (d3.event.pageY - 28) + "px");
+                })
+                .on("mouseout", function() {
+                    const tooltip = d3.select("#tooltip");
+                    tooltip.transition()
+                        .duration(500)
+                        .style("opacity", 0);
+                })
+                .transition();
+
+            // bars.exit().remove();
+            */
+            //console.log(window.filteredData)
+            //console.log("dddddd" + window.selectedState)
+
+            var constante = { selectedState: window.selectedState, filteredData: window.filteredData }
+
+
+            window.dados = window.filteredData
+
+
+
+            chart.selectAll(".bar")
+                .data(constante.filteredData, d => d.cargo)
+                .join(
+                    enter => enter.append("rect")
+                        .attr("class", "bar")
+                        .attr("x", 0)
+                        .attr("y", d => y(d.cargo))
+                        .attr("height", y.bandwidth())
+                        .attr("fill", "#2c697e")
+                        .attr("width", d => x(d.media))
+                        //.on("mouseover", mouseover)
+                        //.on("mouseout", mouseleave),
+                          .on("mouseover", function(event, d) {
+                              const tooltip = d3.select("#tooltip");
+                              //console.log(constante.filteredData)
+                              //console.log(window.dados)
+                              tooltip.transition()
+                                  .duration(200)
+                                  .style("opacity", .9);
+                              tooltip.html(
+                                  `Cargo: ${window.dados[d].cargo}<br>Total de Registros: ${Math.floor(window.dados[d].totalRegistros)}<br>Estado: ${window.selectedState}<br>Média Salarial: ${formatBR.format(window.dados[d].media)}<br>Mediana do Salário: ${formatBR.format(window.dados[d].mediana)}<br>Número de Amostras: ${formatDecimal(window.dados[d].amostras)}<br>` +
+                                  `<svg width="150" height="150">
+                                              <g transform="translate(75,75)">
+                                                  ${renderPieChart(window.dados[d].confianca)}
+                                              </g>
+                                          </svg>`
+                              )
+                                  .style("left", (d3.event.pageX) + "px")
+                                  .style("top", (d3.event.pageY - 28) + "px");
+                          })
+                          .on("mouseleave", function() {
+                              const tooltip = d3.select("#tooltip");
+                              tooltip.transition()
+                                  .duration(500)
+                                  .style("opacity", 0);
+                          }),
+                    update => update.transition()
+                        .attr("width", d => x(d.media))
+                        .attr("y", d => y(d.cargo)),
+                    exit => exit.remove()
+                );
+
+
+            chart.selectAll(".median-point")
+                .data(window.filteredData, d => d.cargo)
+                .join(
+                    enter => enter.append("circle")
+                        .attr("class", "median-point")
+                        .attr("cx", d => x(d.mediana))
+                        .attr("cy", d => y(d.cargo) + y.bandwidth() / 2)
+                        .attr("r", 4)
+                        .attr("fill", "red"),
+                    update => update.transition()
+                        .attr("cx", d => x(d.mediana))
+                        .attr("cy", d => y(d.cargo) + y.bandwidth() / 2),
+                    exit => exit.remove()
+                );
+
+            const medianLineData = window.filteredData.filter(d => !isNaN(d.mediana));
+
+            chart.selectAll(".median-line")
+                .data([medianLineData])
+                .join(
+                    enter => enter.append("path")
+                        .attr("class", "median-line")
+                        .attr("fill", "none")
+                        .attr("stroke", "red")
+                        .attr("stroke-width", 2)
+                        .attr("d", d3.line()
+                            .x(d => x(d.mediana))
+                            .y(d => y(d.cargo) + y.bandwidth() / 2)
+                            .curve(d3.curveMonotoneX)(medianLineData)
+                        ),
+                    update => update.transition()
+                        .attr("d", d3.line()
+                            .x(d => x(d.mediana))
+                            .y(d => y(d.cargo) + y.bandwidth() / 2)
+                            .curve(d3.curveMonotoneX)(medianLineData)
+                        ),
+                    exit => exit.remove()
+                );
+
+            /*  const medianPoints = chart.selectAll(".median-point")
+                  .data(window.filteredData, d => d.cargo);
+
+              medianPoints.enter().append("circle")
+                  .attr("class", "median-point")
+                  .attr("cx", d => x(d.mediana))
+                  .attr("cy", d => y(d.cargo) + y.bandwidth() / 2)
+                  .attr("r", 4)
+                  .attr("fill", "red")
+                  .merge(medianPoints);
+
+              medianPoints.transition()
+                  .attr("cx", d => x(d.mediana))
+                  .attr("cy", d => y(d.cargo) + y.bandwidth() / 2);
+
+              medianPoints.exit().remove();
+
+              const medianLineData = window.filteredData.filter(d => !isNaN(d.mediana));
+
+              const medianLine = chart.selectAll(".median-line")
+                  .data([medianLineData]);
+
+              medianLine.enter().append("path")
+                  .attr("class", "median-line")
+                  .attr("fill", "none")
+                  .attr("stroke", "red")
+                  .attr("stroke-width", 2)
+                  .merge(medianLine)
+                  .transition()
+                  .attr("d", d3.line()
+                      .x(d => x(d.mediana))
+                      .y(d => y(d.cargo) + y.bandwidth() / 2)
+                      .curve(d3.curveMonotoneX)(medianLineData)
+                  );
+
+              medianLine.exit().remove();*/
+        }
+
+        function renderPieChart(confianca) {
+            const filteredConfianca = Object.keys(confianca)
+                .filter(key => confianca[key] > 0)
+                .reduce((obj, key) => {
+                    obj[key] = confianca[key];
+                    return obj;
+                }, {});
+
+            const pie = d3.pie().value(d => d.value);
+            const dataReady = pie(d3.entries(filteredConfianca));
+
+            const arc = d3.arc()
+                .innerRadius(30)
+                .outerRadius(50);
+
+            /*const colors = {
+                baixa: "#ff0000",
+                alta: "#00ff00",
+                muitoAlta: "#FFA500",
+                naoEncontrado: "#808080"
+            };*/
+
+            const colors = {
+                baixa: "#ff4c4c",
+                alta: "#4caf50",
+                muitoAlta: "#ffca28",
+                naoEncontrado: "#9e9e9e"
+            };
+
+            const arcs = dataReady.map(d => `
+                <path d="${arc(d)}" fill="${colors[d.data.key]}"></path>
+            `).join("");
+
+            const labels = dataReady.map(d => `
+                <text transform="translate(${arc.centroid(d)})" dy=".35em" text-anchor="middle" font-weight="bold">
+                    ${d.data.value}
+                </text>
+            `).join("");
+
+            const legend = Object.keys(colors).filter(key => filteredConfianca[key] > 0).map((key, index) => `
+                <g transform="translate(0,${index * 20})">
+                    <rect width="10" height="10" fill="${colors[key]}"></rect>
+                    <text x="15" y="10" font>${{
+                    baixa: "Baixa",
+                    alta: "Alta",
+                    muitoAlta: "Muito Alta",
+                    naoEncontrado: "N.E."
+                }[key]}</text>
+                </g>
+            `).join("");
+
+            return `
+                <text x="0" y="-60" text-anchor="middle" font-size="14px" font-weight="bold">Confiança dos dados</text>
+            <g transform="translate(-25,-5)">
+                ${arcs + labels}
+            </g>
+            <g transform="translate(30,-40)">
+                ${legend}
+            </g>
+            `;
+        }
+
+        stateFilter.on("change", function() {
+
+            window.selectedState = d3.select(this).property("value");
+            window.filteredData = updateData(window.selectedState);
+            //console.log("dddddd" + selectedState)
+            updateChart(window.filteredData, window.selectedState);
+        });
+
+        const initialData = updateData("Brasil");
+        updateChart(initialData, "Brasil");
+    });
+
+    //FINAL DO CHART 8
 
     // Event listeners for expanding charts
     d3.select("#chart1-preview").on("click", () => window.location.href = "chart1.html");
