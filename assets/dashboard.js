@@ -1439,6 +1439,7 @@ function loadMiniCharts() {
     d3.select("#chart6-preview").on("click", () => window.location.href = "chart6.html");
     d3.select("#chart7-preview").on("click", () => window.location.href = "chart7.html");
     d3.select("#chart8-preview").on("click", () => window.location.href = "chart8.html");
+    d3.select("#chart9-preview").on("click", () => window.location.href = "chart9.html");
 }
 
 // Load mini charts when the page loads
