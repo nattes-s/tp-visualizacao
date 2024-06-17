@@ -714,7 +714,7 @@ d3.csv("data/bloxpot_certo.csv", function(d) {
         .attr("text-anchor", "middle")
         .attr("x", margin.left + width / 2)
         .attr("y", height + margin.bottom - 5)
-        .text("Estados");
+        .text("Estados (Sul/Sudeste)");
 
     svg.append("text")
         .attr("class", "y-axis-label")

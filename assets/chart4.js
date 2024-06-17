@@ -881,7 +881,7 @@ d3.csv('data/confianca3.csv').then(function(data) {
             .attr("text-anchor", "middle")
             .attr("x", width / 2)
             .attr("y", height + margin.bottom - 10)
-            .text("Estados");
+            .text("Estados (Sul/Sudeste)");
 
         svg.append("text")
             .attr("class", "y-axis-label")

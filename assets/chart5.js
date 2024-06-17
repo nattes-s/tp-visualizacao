@@ -561,5 +561,5 @@ d3.csv("data/scaterplot.csv").then(function(data) {
         .attr("transform", "rotate(-90)")
         .attr("x", -height / 2)
         .attr("y", margin.left - 60)
-        .text("Estados");
+        .text("Estados (Sul/Sudeste)");
 });

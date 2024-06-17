@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Projeto de Visualização de Dados</title>
+    <title>PerfilEgresso</title>
     <link rel="stylesheet" href="assets/style.css">
     <link rel="stylesheet" href="assets/styles.css">
     <link rel="stylesheet" href="styles/settings.css">
@@ -21,29 +21,58 @@
 <body>
     <header>
         <div class="header-content">
-            <h1>PerfilEgresso: Visualizações UEMG Divinópolis</h1>
+            <h1>PerfilEgresso: Curso de Engenharia de Computação - UEMG Divinópolis</h1>
             <h2 style="font-size: 16px;">Projeto da disciplina de Visualização de Dados</h2>
-            <p>Autores: Edwaldo Soares e Natália Sales</p>
+            <p>Autores: Edwaldo Soares Rodrigues e Natália Sales Santos</p>
         </div>
         <nav>
             <ul class="menu">
-                <li><a href="index.html">Dashboard</a></li>
-                <li><a href="chart1.html">Médias dos salários</a></li>
-                <li><a href="chart2.html">Cargos dos egressos</a></li>
-                <li><a href="chart3.html">Mapa salarial</a></li>
-                <li><a href="chart4.html">Nível de confiança </a></li>
-                <li><a href="chart5.html">Dispersão salarial</a></li>
-                <li><a href="chart6.html">Divergência salarial</a></li>
-                <li><a href="chart7.html">Distribuição Salarial por estado</a></li>
-                <li><a href="chart8.html">Distribuição de salários por cargo</a></li>
+                <li><a href="index.html">Página Inicial</a></li>
+                <li><a href="chart9.html">Egressos Coletados</a></li>
+                <li><a href="chart2.html">Cargos dos Egressos</a></li>
+                <li><a href="chart4.html">Confiança dos Dados</a></li>
+                <li><a href="chart1.html">Salários por Estado</a></li>
+                <li><a href="chart3.html">Mapa Salarial</a></li>                
+                <li><a href="chart6.html">Diferença Salarial BR</a></li>
+                <li><a href="chart5.html">Dispersão Salarial</a></li>
+                <li><a href="chart7.html">Distribuição por Estado</a></li>
+                <li><a href="chart8.html">Distribuição por Cargo</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
         <div class="dashboard">
+            <div class="chart-preview" id="chart9-preview">
+                <h3>Egressos Coletados</h3>
+                <div class="mini-chart">
+                    <svg width="300" height="200"></svg>
+                </div>
+                <div id="tooltip" class="tooltip"></div>
+            </div>
+            
+            <div class="chart-preview" id="chart2-preview">
+                <h3>Cargos dos Egressos</h3>
+            </br>
+                <div class="mini-chart">
+                    <svg width="300" height="200"></svg>
+                </div>
+                <div id="tooltip" class="tooltip"></div>
+            </div>
+
+            <div class="chart-preview" id="chart4-preview">
+                <h3>Confiança dos Dados</h3>
+                </br>
+                <button id="filter-all">Mostrar Todos</button>
+                <button id="filter-no-na">Sem "Não Encontrado"</button>
+                <div class="mini-chart">
+                    <svg width="300" height="200"></svg>
+                </div>
+                <div id="tooltip-chart4" class="tooltip"></div>
+            </div>
+
             <div class="chart-preview" id="chart1-preview">
-                <h3>Médias dos Salários</h3>
+                <h3>Salários por Estado </h3>
                 <!--<a href="chart1.html">
                     <img src="imagens/img.jpg" alt="Expandir" class="expand-icon">
                 </a>-->
@@ -53,16 +82,9 @@
                 <div id="tooltip-chart1" class="tooltip"></div>
             </div>
 
-            <div class="chart-preview" id="chart2-preview">
-                <h3>Nuvem de Palavras</h3>
-                <div class="mini-chart">
-                    <svg width="300" height="200"></svg>
-                </div>
-                <div id="tooltip" class="tooltip"></div>
-            </div>
-
             <div class="chart-preview" id="chart3-preview">
-                <h3 id="chart-title"></h3>
+                <h3>Mapa Salarial</h3>
+                </br>
                 <!--<a href="chart3.html">
                     <img src="imagens/img.jpg" alt="Expandir" class="expand-icon">
                 </a>-->
@@ -77,15 +99,6 @@
                 <div class="card__body__countries__map"></div>
             </div>
 
-            <div class="chart-preview" id="chart4-preview">
-                <h3>Nível de confiança dos dados salariais do Glassdor</h3>
-                <button id="filter-all">Mostrar Todos</button>
-                <button id="filter-no-na">Sem "Não Encontrado"</button>
-                <div class="mini-chart">
-                    <svg width="300" height="200"></svg>
-                </div>
-                <div id="tooltip-chart4" class="tooltip"></div>
-            </div>
 
             <div class="chart-preview" id="chart5-preview">
                 <h3>Dispersão Salarial</h3>
@@ -96,7 +109,7 @@
             </div>
 
             <div class="chart-preview" id="chart6-preview">
-                <h3>Diferença salarial em relação ao Brasil</h3>
+                <h3>Diferença Salarial BR</h3>
                 <div class="mini-chart">
                     <svg width="300" height="200"></svg>
                 </div>
@@ -104,15 +117,16 @@
             </div>
 
             <div class="chart-preview" id="chart7-preview">
-                <h3>Boxplot de Salários por Estado</h3>
-                <div class="mini-chart">
+                <h3>Distribuição por Estado</h3>
+                     <div class="mini-chart">
                     <svg width="300" height="200"></svg>
                 </div>
                 <div id="tooltip-chart7" class="tooltip"></div>
             </div>
 
             <div class="chart-preview" id="chart8-preview">
-                <h3>Distribuição de Salários por Cargo</h3>
+                <h3>Distribuição por Cargo</h3>
+                  </br>
                 <label for="stateFilter">Selecione o Estado:</label>
                 <select id="stateFilter">
                     <option value="Brasil">Brasil</option>

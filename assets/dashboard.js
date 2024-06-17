@@ -1,5 +1,98 @@
+
 // Function to load mini charts in the dashboard
 function loadMiniCharts() {
+
+    //INÍCIO DO CHART 0
+    d3.csv("data/coletados.csv").then(data => {
+        const width = 210,
+            height = 240,
+            margin = 40;
+
+
+
+        const radius = Math.min(width, height) / 2 - margin;
+
+        const svg = d3.select("#chart9-preview .mini-chart svg")
+            .append("g")
+            .attr("transform", `translate(${width / 2},${height / 2})`);
+
+        const color = d3.scaleOrdinal()
+            .domain(["NaoColetados", "Coletados"]) // Assegure-se de que as categorias correspondem
+            .range(["#204d57", "#a8c4ce"]);
+
+        const pie = d3.pie()
+            .value(d => d.value);
+
+        const data_ready = pie(d3.entries(data[0]));
+        data_ready[0].data.key = "Não Coletado"
+        data_ready[1].data.key = "Coletado"
+        const arc = d3.arc()
+            .innerRadius(radius * 0.5)  // Tamanho do furo no meio (gráfico de donut)
+            .outerRadius(radius);
+
+        const tooltip = d3.select("#tooltip");
+
+        svg.selectAll('path')
+            .data(data_ready)
+            .enter()
+            .append('path')
+            .attr('d', arc)
+            .attr('fill', d => color(d.data.key))
+            .attr("stroke", "black")
+            .style("stroke-width", "2px")
+            .style("opacity", 0.7)
+            .on("mouseover", function(event, d) {
+                tooltip.transition()
+                    .duration(200)
+                    .style("opacity", .9);
+                tooltip.html(`Categoria: ${data_ready[d].data.key}<br>Valor absoluto: ${data_ready[d].data.value}`)
+                    .style("left", (d3.event.pageX) + "px")
+                    .style("top", (d3.event.pageY - 28) + "px");
+            })
+            .on("mouseout", function() {
+                tooltip.transition()
+                    .duration(500)
+                    .style("opacity", 0);
+            });
+
+        // Adicionar porcentagens dentro de cada fatia
+        const total = d3.sum(data_ready, d => d.value);
+        svg.selectAll('text')
+            .data(data_ready)
+            .enter()
+            .append('text')
+            .text(d => `${(d.data.value / total * 100).toFixed(2)}%`)
+            .attr("transform", d => `translate(${arc.centroid(d)})`)
+            .style("text-anchor", "middle")
+            .style("font-size", 10)
+            .style("fill", "black");
+
+        const legend = svg.selectAll(".legend")
+            .data(data_ready)
+            .enter()
+            .append("g")
+            .attr("class", "legend")
+            .style("font-size", 12)
+            .attr("transform", (d, i) => `translate(80,${i * 20})`); // Ajuste da posição da legenda
+
+        legend.append("rect")
+            .attr("x", width / 2 - 18)
+            .attr("width", 12)
+            .attr("height", 12)
+            .style("fill", d => color(d.data.key));
+
+        legend.append("text")
+            .attr("x", width / 2 - 30)
+            .attr("y", 9)
+            .attr("dy", ".35em")
+            .style("text-anchor", "end")
+            .text(d => d.data.key);
+    });
+
+    
+    // FINAL DO CHART 0
+    
+    
     //INÍCIO DO CHART 1
     
     d3.csv("data/egresso1.csv").then(function(data) {
@@ -40,7 +133,7 @@ function loadMiniCharts() {
             .attr("text-anchor", "middle")
             .attr("x", margin.left + width / 2)
             .attr("y", height + margin.top + 45)
-            .text("Estados do Brasil");
+            .text("Estados (Sul/Sudeste)");
 
         svg.append("text")
             .attr("class", "y-axis-label")
@@ -197,14 +290,14 @@ function loadMiniCharts() {
                     maximumFractionDigits: 2
                 });
                 // Atualize o título do gráfico
-                var chartTitleElement = document.getElementById("chart-title");
+               /* var chartTitleElement = document.getElementById("chart-title");
                 if (filter === "Media_Salarial") {
                     chartTitleElement.textContent = "Média salarial dos estados";
                 } else if (filter === "Media_Amostras_Salario_Cargo") {
                     chartTitleElement.textContent = "Média das amostras do salário por cargo";
                 } else if (filter === "Diferenca_Relacao_Brasil_Porc") {
                     chartTitleElement.textContent = "Diferença salarial de um estado em relação ao Brasil ";
-                }
+                }*/
 
                 svg.selectAll("path")
                     .data(topojson.feature(br, br.objects.estados).features)
@@ -420,7 +513,7 @@ function loadMiniCharts() {
                 .attr("text-anchor", "middle")
                 .attr("x", width / 2)
                 .attr("y", height + margin.bottom - 10)
-                .text("Estados");
+                .text("Estados (Sul/Sudeste)");
 
             svg.append("text")
                 .attr("class", "y-axis-label")
@@ -443,7 +536,7 @@ function loadMiniCharts() {
 
     d3.csv("data/scaterplot.csv").then(function(data) {
         var svg = d3.select("#chart5-preview .mini-chart svg"),
-            margin = {top: 20, right: 20, bottom: 80, left: 80},
+            margin = {top: 20, right: 20, bottom: 50, left: 100},
             width = +svg.attr("width") - margin.left - margin.right,
             height = +svg.attr("height") - margin.top - margin.bottom,
             g = svg.append("g").attr("transform", "translate(" + margin.left + "," + margin.top + ")");
@@ -577,8 +670,8 @@ function loadMiniCharts() {
             .attr("text-anchor", "middle")
             .attr("transform", "rotate(-90)")
             .attr("x", -height / 2)
-            .attr("y", margin.left - 70)
-            .text("Estados");
+            .attr("y", margin.left - 50)
+            .text("Estados (Sul/Sudeste)");
 
        
        
@@ -701,7 +794,7 @@ function loadMiniCharts() {
             .attr("transform", "rotate(-90)")
             .attr("x", -height / 2)
             .attr("y", margin.left - 70)
-            .text("Estados");
+            .text("Estados (Sul/Sudeste)");
     });
 
     // FINAL DO CHART 6
@@ -925,7 +1018,7 @@ function loadMiniCharts() {
             .attr("text-anchor", "middle")
             .attr("x", margin.left )
             .attr("y", height + margin.bottom - 10)
-            .text("Estados");
+            .text("Estados (Sul/Sudeste)");
 
         svg.append("text")
             .attr("class", "y-axis-label")

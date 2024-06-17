@@ -343,7 +343,7 @@ d3.csv("data/egresso1.csv").then(function(data) {
         .attr("text-anchor", "middle")
         .attr("x", margin.left + width / 2)
         .attr("y", height + margin.top + 45)
-        .text("Estados do Brasil");
+        .text("Estados (Sul/Sudeste)");
 
     svg.append("text")
         .attr("class", "y-axis-label")

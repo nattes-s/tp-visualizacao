@@ -160,5 +160,5 @@ d3.csv("data/egresso1.csv").then(function(data) {
         .attr("transform", "rotate(-90)")
         .attr("x", -height / 2)
         .attr("y", margin.left - 70)
-        .text("Estados");
+        .text("Estados (Sul/Sudeste)");
 });

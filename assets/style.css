@@ -1638,7 +1638,8 @@ header {
 }
 
 nav {
-  background-color: #204d57;
+  background-color: #204d57;  
+   width: 100%;
 }
 
 .menu {
@@ -1649,7 +1650,9 @@ nav {
 }
 
 .menu li {
-  margin: 0 10px;
+  margin: 5px 10px;
+  font-size: 13px;   
+  /*position: relative;  Necessário para o submenu */
 }
 
 .menu a {
@@ -1790,3 +1793,48 @@ margin-top: 0;
   cursor: pointer;
   z-index: 10;
 }
+/*/* Estilos do submenu
+.submenu {
+  list-style: none;
+  /*position: absolute;*/
+  /*top: 100%;
+  left: 0;
+  background-color: #2c697e;
+  z-index: 1000;
+  border-radius: 5px;  
+  font-size: 12px;
+  display: flex; /* Alinha itens horizontalmente
+  
+} 
+
+.submenu > li {
+  margin: 0;
+}
+
+.submenu > li > a {
+  color: white;
+  text-decoration: none;
+  padding: 10px 10px 10px 10px;
+  display: block;
+
+ 
+}
+
+.submenu > li > a:hover {
+  background-color: #1a3a3f;
+  display: flex; /* Alinha itens horizontalmente 
+   padding: 10px 15px;
+}*/
+
+/* Exibir submenu ao passar o mouse /
+.menu > li:hover .submenu {
+  display: block;
+}*
+ /*Exibir submenu quando o item do menu está ativo
+.menu-item.active .submenu {
+  display: flex;
+margin-top: 5px; /* Ajustar a margem conforme necessário 
+margin-bottom: 5px;
+  position: static; /* Para manter o submenu na posição fixa 
+
+} */
